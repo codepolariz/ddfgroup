@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DDF GROUP</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet" href="~/lib/fontawesome/css/fontawesome.min.css"/>
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/nav-main.css" />
+</head>
+<body>
+
+    <div class="top-strips">
+        <div class="container" id="container">
+            <div class="text-left"><i class="fa-1x fa-mobile"> +1 972-809-8597</i> | <i class="fa-1x fa-envelope"> info@ddfgroupllc.com </i></div>
+            <div class="text-right">.... Innovation, Our Edge</div>
+        </div>
+    </div>
+    <div class="header__container">
+
+        <div class="lay-inn">
+            <div class="site__logo">
+                <a class="" asp-area="" asp-controller="Home" asp-action="Index"> </a>
+                <img src="~/images/logo.png" />
+            </div>
+
+            <div class="nav-container">
+
+                <partial name="_NavPartial.cshtml" />
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - ddf - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/fontawesome/js/fontawesome.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/responsive-nav.min.js"></script>
+    <script src="~/js/nav-toggle.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $(".primary-nav ul li").hover(function () {
+                $(".dropdown-menu", this).slideDown(100);
+            }, function () {
+                $(".dropdown-menu", this).stop().slideUp(100);
+            });
+        })
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

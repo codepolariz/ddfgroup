@@ -1,0 +1,297 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+#container {
+    display: flex; /* establish flex container */
+    flex-direction: row; /* default value; can be omitted */
+    flex-wrap: nowrap; /* default value; can be omitted */
+    justify-content: space-between; /* switched from default (flex-start, see below) */
+}
+
+.text-right {
+    color: #fff !important;
+    font-size: .7em !important;
+    margin-top: 10px;
+    font-style: italic;
+    
+}
+.text-left {
+    color: #fff !important;
+    font-size: .7em !important;
+    margin-top: 10px;
+    font-style: italic;
+}
+                         
+
+.body___container {
+    width: auto;
+    height: auto;
+}
+
+.top-strips {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 1px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    background: rgba(21, 6, 73, 1.0);
+    background: -webkit-linear-gradient(bottom, rgba(21, 6, 73, 1.0), rgba(21, 91, 147, 1.0));
+    background: -moz-linear-gradient(bottom, rgba(21, 6, 73, 1.0), rgba(21, 91, 147, 1.0));
+    background: linear-gradient(to top, rgba(21, 6, 73, 1.0), rgba(21, 91, 147, 1.0));
+}
+div.header__container {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    background-color:#fff;
+    z-index:1;
+}
+
+div.site__logo {
+    width: 10%;
+    float: left;
+}
+
+    div.site__logo img {
+        width: 100%;
+        height: 100%;
+    }
+
+div.nav-container {
+    width: 89.8%;
+    float: left;
+    overflow: hidden;
+
+}
+.slider___container {
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    height: 65vh; /* remove when image dimension is resize*/
+    clear:both;
+}
+
+/*  adjust images on small devices*/
+@media (max-width: 576px) {
+
+    .slider___container  {
+        max-width: 100%;
+        height:100%;
+        display: block; /* remove extra space below image */
+
+    }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .slider___container  {
+        max-width: 100%;
+        height:100%;
+        display: block; /* remove extra space below image */
+        
+    }
+ }
+
+@media only screen and (device-width: 768px) {
+    /* For general iPad layouts */
+    .slider___container {
+        max-width: 100%;
+        height: 100%;
+        display: block; /* remove extra space below image */
+    }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+    /* For portrait layouts only */
+    .slider___container {
+        max-width: 100%;
+        height: 100%;
+        display: block; /* remove extra space below image */
+    }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+    /* For landscape layouts only */
+    .slider___container {
+        max-width: 100%;
+        height: 100%;
+        display: block; /* remove extra space below image */
+    }
+}
+
+
+#filter__container__dark {
+    background-color: #FDFDFD;
+    border-left: 1px dotted #000;
+    border-right: 1px dotted #000;
+    border-bottom: 1px dotted #000;
+    padding: 0 20px 20px 20px;
+    color: rgba(21, 91, 147, 1.0);
+    min-height: 140px;
+    margin-top: 5px;
+    margin-top:30px;
+    
+}
+
+.filter-top-bottom-margin {
+    margin-top: 20px;
+    margin-top: 25px;
+}
+
+.filter-top-margin {
+    margin-top: 25px !important;
+}
+
+
+    .lay-inn {
+        width: 87%;
+        margin: auto;
+    }
+
+    .heads-padding {
+        padding: 7px 5px;
+    }
+
+    .cars__container {
+        width: 100%;
+        padding: 0 20px;
+        background-color: #000;
+    }
+
+    .car__items {
+        height: auto;
+        margin: 20px auto;
+        padding: 10px;
+        color: #ddd;
+        border-width: 3px;
+        border-style: solid;
+        box-sizing: border-box;
+        border-radius: 1em;
+        border: 1px solid #EAEAEA;
+    }
+
+    @media (max-width: 575.98px) {
+
+
+        .car__items {
+            border: none;
+            border-radius: 0em;
+        }
+    }
+
+    @media (min-width: 576px) and (max-width: 767.98px) {
+
+        .car__items {
+            border: none;
+            border-radius: 0em;
+        }
+    }
+
+
+    .car__items:hover {
+        cursor: pointer;
+        background-color: #EDEDED;
+        border: none;
+    }
+
+    .car__items img {
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+        box-sizing: border-box;
+        border-radius: .3em;
+        border: 1px solid #EAEAEA;
+    }
+
+    .car__title {
+        color: red;
+        font-weight: 800;
+        font-size: 15px;
+        padding: 5px 0;
+    }
+
+    .car__items h2:hover {
+        color: #000;
+    }
+
+    .ds-content {
+        background-color: #ececec;
+        padding: 25px 0;
+        height: auto;
+        border-bottom: 80px solid #ccc;
+        line-height: 1.8;
+    }
+
+    .int__container {
+        width: 100%;
+        height: auto;
+        margin: 1px 0 15px 0;
+    }
+
+        .int__container img {
+            max-width: 100%;
+            max-height: 100%;
+            padding-right: 15px;
+        }
+
+    @media (min-width: 1200px) {
+        .display-4 {
+            font-size: 3.2rem;
+        }
+    }
+
+    .bez-bidge {
+        float: left;
+    }
+
+    .ds-vin {
+        margin: auto;
+        padding-top: 15px;
+        display: block;
+        overflow: hidden;
+    }
+
+    .login_container {
+        width: 50%;
+        margin: auto !important;
+        background-color: #EAEAEA;
+        padding: 15px;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        white-space: nowrap;
+        line-height: 60px; /* Vertically center the text there */
+    }
+
+
