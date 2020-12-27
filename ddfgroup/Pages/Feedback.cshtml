@@ -1,0 +1,58 @@
+﻿@page
+@model ddfgroup.Pages.FeedbackModel
+
+@{
+    ViewData["Title"] = "Feedback";
+    
+}
+
+<div class="ban__container"></div>
+
+
+<div class="container">
+<div class="row">
+    <div class="col-md-4 col-lg-8 align-content-lg-center ">
+        <h1 class="text-xxl-center">Feedback</h1>
+        <hr />
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Feedback.Name" class="control-label"></label>
+                <input asp-for="Feedback.Name" class="form-control" />
+                <span asp-validation-for="Feedback.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Feedback.EmailAddress" class="control-label"></label>
+                <input asp-for="Feedback.EmailAddress" class="form-control" />
+                <span asp-validation-for="Feedback.EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Feedback.MobileNumber" class="control-label"></label>
+                <input asp-for="Feedback.MobileNumber" class="form-control" />
+                <span asp-validation-for="Feedback.MobileNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Feedback.Comment" class="control-label"></label>
+                @Html.TextAreaFor(m => m.Feedback.Comment, new
+   {
+                    rows = "17", 
+       style = "resize:none;width:100%; margin:auto; background-color:#FFF",
+       placeholder = "Enter your comments here",
+       @class = "form-control input-lg textarea-editor",
+       
+       
+})
+                <span asp-validation-for="Feedback.Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

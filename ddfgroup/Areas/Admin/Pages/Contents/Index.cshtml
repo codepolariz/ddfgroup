@@ -1,0 +1,52 @@
+﻿@page
+@model ddfgroup.Areas.Contents.IndexModel
+
+@{
+    ViewData["Title"] = "Web Pages ";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main">
+
+    <partial name="_AdminPartialTopNav" />
+
+    <div class="padding-left"><h3>@ViewData["Title"]</h3></div>
+
+    <div class="row">
+
+        <div class="col-12 col-xl-12 pad-grid">
+
+            <div class="heads-padding text-right">
+                <a  asp-page="Create" asp-route-id="" class="btn btn-info btn-sm"> Create New</a>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PageContents[0].PageTitle)
+                        </th>
+                        
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.PageContents)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PageTitle)
+                            </td>
+                           
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+</div>
+    </div>
