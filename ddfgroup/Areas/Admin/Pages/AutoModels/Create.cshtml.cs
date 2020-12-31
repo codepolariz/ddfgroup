@@ -22,7 +22,7 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
 
         public IActionResult OnGet()
         {
-        ViewData["BrandsId"] = new SelectList(_context.Brands, "Id", "Name");
+        ViewData["BrandsId"] = new SelectList(_context.Brands, "Id", "Name",new SelectListItem("Select a Brand",""));
             return Page();
         }
 
