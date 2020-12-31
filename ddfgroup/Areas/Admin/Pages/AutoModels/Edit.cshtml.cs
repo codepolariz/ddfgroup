@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ddfgroup.Data;
 
-namespace ddfgroup.Areas.Contents
+namespace ddfgroup.Areas.Admin.Pages.AutoModels
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace ddfgroup.Areas.Contents
         }
 
         [BindProperty]
-        public PageContents PageContents { get; set; }
+        public CarsModel CarsModel { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,12 +29,14 @@ namespace ddfgroup.Areas.Contents
                 return NotFound();
             }
 
-            PageContents = await _context.PageInfo.FirstOrDefaultAsync(m => m.Id == id);
+            CarsModel = await _context.CarsModels
+                .Include(c => c.Brands).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (PageContents == null)
+            if (CarsModel == null)
             {
                 return NotFound();
             }
+           ViewData["BrandsId"] = new SelectList(_context.Brands, "Id", "Name");
             return Page();
         }
 
@@ -47,7 +49,7 @@ namespace ddfgroup.Areas.Contents
                 return Page();
             }
 
-            _context.Attach(PageContents).State = EntityState.Modified;
+            _context.Attach(CarsModel).State = EntityState.Modified;
 
             try
             {
@@ -55,7 +57,7 @@ namespace ddfgroup.Areas.Contents
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PageContentsExists(PageContents.Id))
+                if (!CarsModelExists(CarsModel.Id))
                 {
                     return NotFound();
                 }
@@ -68,9 +70,9 @@ namespace ddfgroup.Areas.Contents
             return RedirectToPage("./Index");
         }
 
-        private bool PageContentsExists(int id)
+        private bool CarsModelExists(int id)
         {
-            return _context.PageInfo.Any(e => e.Id == id);
+            return _context.CarsModels.Any(e => e.Id == id);
         }
     }
 }

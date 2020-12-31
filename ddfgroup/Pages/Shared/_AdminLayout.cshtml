@@ -49,28 +49,31 @@
     <script src="~/theme/js/app.js"></script>
     <script src="~/lib/fontawesome/js/fontawesome.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script>
 
+        $(document).ready(function () {
+            $('#RsTable').DataTable();
+        });
+    </script>
 
-    @{ 
+    @{
         String Analytics = "Analytics Dashboard";
-        String Page = "Create Page Content";
+        String Page2 = "Create Page Content";
         String EditPage = "Edit Page";
 
 
-        if (ViewData["Title"].ToString() !=  Analytics)
+        if (ViewData["Title"].ToString() == Analytics)
         {
-            <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-            <script>
-
-                $(document).ready(function () {
-                    $('#RsTable').DataTable();
-                });
-            </script>
+            <script src="~/theme/js/Analytics.js"></script>
         }
-        if (ViewData["Title"].ToString() == Page || ViewData["Title"].ToString() == EditPage)
+
+
+
+        if (ViewData["Title"].ToString() == Page2 || ViewData["Title"].ToString() == EditPage)
         {
-            
+
             <script src="~/summernote-0.8.18/summernote.min.js"></script>
             <script>
                 $(document).ready(function () {
@@ -86,10 +89,7 @@
             </script>
         }
 
-        else
-        {
-            <script src="~/theme/js/Analytics.js"></script>
-        }
+
 
     }
 

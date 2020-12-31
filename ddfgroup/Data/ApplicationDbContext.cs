@@ -21,5 +21,8 @@ namespace ddfgroup.Data
         public DbSet<PageContents> PageInfo { get; set; }
         public DbSet<ApplicationUser> User { get; set; }
         public DbSet<Feedback>  Feedback { get; set; }
+        public DbSet<Brands>  Brands { get; set; }
+
+        public DbSet<CarsModel> CarsModels { get; set; }
     }
 }

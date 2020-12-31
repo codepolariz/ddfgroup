@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ddfgroup.Data;
 
-namespace ddfgroup.Areas.Admin
+namespace ddfgroup.Areas.Admin.Pages.Brand
 {
     public class DetailsModel : PageModel
     {
@@ -18,7 +18,7 @@ namespace ddfgroup.Areas.Admin
             _context = context;
         }
 
-        public Feedback Feedback { get; set; }
+        public Brands Brands { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,9 +27,9 @@ namespace ddfgroup.Areas.Admin
                 return NotFound();
             }
 
-            Feedback = await _context.Feedback.FirstOrDefaultAsync(m => m.Id == id);
+            Brands = await _context.Brands.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Feedback == null)
+            if (Brands == null)
             {
                 return NotFound();
             }

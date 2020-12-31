@@ -7,11 +7,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ddfgroup.Data;
 
-namespace ddfgroup.Areas.Contents
+namespace ddfgroup.Areas.Admin.Pages.AutoModels
 {
     public class DeleteModel : PageModel
     {
-        public const string Message  = nameof(Message);
         private readonly ddfgroup.Data.ApplicationDbContext _context;
 
         public DeleteModel(ddfgroup.Data.ApplicationDbContext context)
@@ -20,7 +19,7 @@ namespace ddfgroup.Areas.Contents
         }
 
         [BindProperty]
-        public PageContents PageContents { get; set; }
+        public CarsModel CarsModel { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +28,10 @@ namespace ddfgroup.Areas.Contents
                 return NotFound();
             }
 
-            PageContents = await _context.PageInfo.FirstOrDefaultAsync(m => m.Id == id);
+            CarsModel = await _context.CarsModels
+                .Include(c => c.Brands).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (PageContents == null)
+            if (CarsModel == null)
             {
                 return NotFound();
             }
@@ -45,14 +45,14 @@ namespace ddfgroup.Areas.Contents
                 return NotFound();
             }
 
-            PageContents = await _context.PageInfo.FindAsync(id);
+            CarsModel = await _context.CarsModels.FindAsync(id);
 
-            if (PageContents != null)
+            if (CarsModel != null)
             {
-                _context.PageInfo.Remove(PageContents);
+                _context.CarsModels.Remove(CarsModel);
                 await _context.SaveChangesAsync();
             }
-            
+
             return RedirectToPage("./Index");
         }
     }

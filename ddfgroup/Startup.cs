@@ -32,9 +32,18 @@ namespace ddfgroup
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddRazorPages( options=>
-                 options.Conventions.AuthorizeAreaPage("Admin",   "/Contents")
-            );
+           // services.AddRazorPages( options=>
+                // options.Conventions.AuthorizeAreaPage("Admin",   "/Contents")
+
+                 services.AddMvc()
+                  .AddRazorPagesOptions(options =>
+                  {
+                      options.Conventions.AuthorizeFolder("/Account/Manage");
+                      options.Conventions.AuthorizeFolder("/Admin/Contents");
+                      options.Conventions.AuthorizePage("/Account/Logout");
+                      options.Conventions.AllowAnonymousToPage("/Account/Login");
+                  });
+           // );
           
         }
 

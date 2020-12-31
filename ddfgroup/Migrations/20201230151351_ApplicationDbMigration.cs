@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ddfgroup.Migrations
 {
-    public partial class ApplicationMigrationDb : Migration
+    public partial class ApplicationDbMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,9 +46,22 @@ namespace ddfgroup.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                }); */
+                });  */
 
             migrationBuilder.CreateTable(
+                name: "Brands",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brands", x => x.Id);
+                });
+
+           /* migrationBuilder.CreateTable(
                 name: "Feedback",
                 columns: table => new
                 {
@@ -56,7 +69,7 @@ namespace ddfgroup.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     EmailAddress = table.Column<string>(nullable: false),
-                    MobileNumber = table.Column<string>(maxLength: 11, nullable: false),
+                    MobileNumber = table.Column<string>(nullable: false),
                     Comment = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -64,7 +77,7 @@ namespace ddfgroup.Migrations
                     table.PrimaryKey("PK_Feedback", x => x.Id);
                 });
 
-            /*migrationBuilder.CreateTable(
+            migrationBuilder.CreateTable(
                 name: "PageInfo",
                 columns: table => new
                 {
@@ -221,7 +234,7 @@ namespace ddfgroup.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true,
-                filter: "[NormalizedUserName] IS NOT NULL");
+                filter: "[NormalizedUserName] IS NOT NULL");  */
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -242,6 +255,9 @@ namespace ddfgroup.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Brands");
+
+            migrationBuilder.DropTable(
                 name: "Feedback");
 
             migrationBuilder.DropTable(
@@ -251,7 +267,7 @@ namespace ddfgroup.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");  */
+                name: "AspNetUsers");
         }
     }
 }

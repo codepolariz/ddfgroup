@@ -1,0 +1,45 @@
+﻿@page
+@model ddfgroup.Areas.Admin.Pages.AutoModels.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main ">
+    <partial name="_AdminPartialTopNav" />
+
+    <div class="main-body">
+
+        <div class="padding-left"><h3>@ViewData["Title"]</h3></div>
+
+        <div class="row">
+            <h4>Are you sure you want to delete?</h4>
+
+
+            <div class="col-md-4 col-xl-4 col-lg-4 ds-content pad-grid">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CarsModel.Name)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CarsModel.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CarsModel.Date)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CarsModel.Date)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CarsModel.Brands)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CarsModel.Brands.Name)
+                    </dd>
+                </dl>
+                </div>
+
+            </div>
+        </div>
+    </div>

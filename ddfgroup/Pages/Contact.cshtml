@@ -1,0 +1,27 @@
+﻿@page
+@model ddfgroup.Pages.ContactModel
+@{
+    Layout="~/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"]="Conytact us";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 colxl-12; align-content-lg-center ">
+            <br /><br />
+            <h1 class="text-xxl-center">Our Service Offering</h1>
+            <hr />
+            <dl class="row">
+
+                <dd class="col-sm-10">
+
+
+                    @Html.DisplayFor(model => model.PageContents.PageContent)
+
+
+
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>

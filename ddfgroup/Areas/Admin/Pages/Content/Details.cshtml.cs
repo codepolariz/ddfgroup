@@ -7,9 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ddfgroup.Data;
 
-namespace ddfgroup.Areas.Contents
+namespace ddfgroup.Areas.Admin.Pages.Content
 {
-   
     public class DetailsModel : PageModel
     {
         private readonly ddfgroup.Data.ApplicationDbContext _context;

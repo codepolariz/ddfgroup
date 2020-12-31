@@ -2,13 +2,13 @@
     <ul class="tabs primary-nav">
 
         <li class="tabs__item">
-            <a class="tabs__link active" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            <a class="tabs__link active" asp-page="/Index" >Home</a>
         </li>
         <li class="tabs__item">
-            <a class="tabs__link"  asp-page="/About">About Us</a>
+            <a class="tabs__link"  asp-page="/About" asp-route-Id ="1">About Us</a>
         </li>
         <li class="tabs__item">
-            <a class="tabs__link" asp-area="Customer" asp-controller="Home" asp-action="Index">Services</a>
+            <a class="tabs__link"   asp-page="/Services" asp-route-Id="3">Services</a>
 
             <ul class="dropdown-menu">
                 <li><a href="#">Dropdown Link</a></li>
@@ -19,10 +19,10 @@
             <a class="tabs__link" asp-area="" asp-controller="Home" asp-action="Index">Track Shippment</a>
         </li>
         <li class="tabs__item">
-            <a class="tabs__link no-border" asp-area="" asp-controller="Home" asp-action="Index">VIN Checker</a>
+            <a class="tabs__link no-border" asp-protocol="https://www.vinaudit.com/" target="_New">VIN Checker</a>
         </li>
         <li class="tabs__item">
-            <a class="tabs__link no-border" asp-area="" asp-controller="Home" asp-action="Index">Contact us</a>
+            <a class="tabs__link no-border" asp-page="/Contact"  asp-route-Id="2">Contact us</a>
         </li>
         <li class="tabs__item">
             <a class="tabs__link no-border"   asp-page="Feedback">Feedback</a>

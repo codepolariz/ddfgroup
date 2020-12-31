@@ -7,19 +7,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ddfgroup.Data;
 
-namespace ddfgroup.Pages
+namespace ddfgroup.Areas.Admin.Pages.Comments
 {
-    public class AboutModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly ddfgroup.Data.ApplicationDbContext _context;
 
-        public AboutModel(ddfgroup.Data.ApplicationDbContext context)
+        public DetailsModel(ddfgroup.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
-        [BindProperty]
-        public PageContents PageContents { get; set; }
+        public Feedback Feedback { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +27,9 @@ namespace ddfgroup.Pages
                 return NotFound();
             }
 
-            PageContents = await _context.PageInfo.FirstOrDefaultAsync(m => m.Id == id);
+            Feedback = await _context.Feedback.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (PageContents == null)
+            if (Feedback == null)
             {
                 return NotFound();
             }

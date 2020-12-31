@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ddfgroup.Data;
 
-namespace ddfgroup.Areas.Contents
+namespace ddfgroup.Areas.Admin.Pages.Comments
 {
     public class CreateModel : PageModel
     {
@@ -24,7 +24,7 @@ namespace ddfgroup.Areas.Contents
         }
 
         [BindProperty]
-        public PageContents PageContents { get; set; }
+        public Feedback Feedback { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -35,7 +35,7 @@ namespace ddfgroup.Areas.Contents
                 return Page();
             }
 
-            _context.PageInfo.Add(PageContents);
+            _context.Feedback.Add(Feedback);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

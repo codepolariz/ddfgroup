@@ -10,8 +10,8 @@ using ddfgroup.Data;
 namespace ddfgroup.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201227103540_ApplicationMigrationDb")]
-    partial class ApplicationMigrationDb
+    [Migration("20201230151351_ApplicationDbMigration")]
+    partial class ApplicationDbMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -227,6 +227,22 @@ namespace ddfgroup.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("ddfgroup.Data.AutoBrands", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+                });
+
             modelBuilder.Entity("ddfgroup.Data.Feedback", b =>
                 {
                     b.Property<int>("Id")
@@ -244,8 +260,7 @@ namespace ddfgroup.Migrations
 
                     b.Property<string>("MobileNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(11)")
-                        .HasMaxLength(11);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

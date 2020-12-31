@@ -6,6 +6,7 @@ for details on configuring this project to bundle and minify static web assets. 
 -------------------------------------------------- */
 html {
   font-size: 14px;
+ 
 }
 @media (min-width: 768px) {
   html {
@@ -298,7 +299,11 @@ div.nav-container {
     /** admin area*/
 
 
-
+.main-body {
+    background-color: #f7f7fc !important;
+    margin-left:30px;
+    
+}
 .pad-grid{
     padding:20px !important;
 }

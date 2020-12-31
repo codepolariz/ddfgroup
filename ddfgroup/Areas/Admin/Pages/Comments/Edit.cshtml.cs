@@ -4,16 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ddfgroup.Data;
 
-namespace ddfgroup.Areas.Admin
+namespace ddfgroup.Areas.Admin.Pages.Comments
 {
-    public class DeleteModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly ddfgroup.Data.ApplicationDbContext _context;
 
-        public DeleteModel(ddfgroup.Data.ApplicationDbContext context)
+        public EditModel(ddfgroup.Data.ApplicationDbContext context)
         {
             _context = context;
         }
@@ -37,22 +38,39 @@ namespace ddfgroup.Areas.Admin
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://aka.ms/RazorPagesCRUD.
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return Page();
             }
 
-            Feedback = await _context.Feedback.FindAsync(id);
+            _context.Attach(Feedback).State = EntityState.Modified;
 
-            if (Feedback != null)
+            try
             {
-                _context.Feedback.Remove(Feedback);
                 await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!FeedbackExists(Feedback.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return RedirectToPage("./Index");
+        }
+
+        private bool FeedbackExists(int id)
+        {
+            return _context.Feedback.Any(e => e.Id == id);
         }
     }
 }

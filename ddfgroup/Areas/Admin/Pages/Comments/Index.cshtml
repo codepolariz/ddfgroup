@@ -1,12 +1,12 @@
 ﻿@page
-@model ddfgroup.Areas.Admin.IndexModel
+@model ddfgroup.Areas.Admin.Pages.Comments.IndexModel
 
 @{
-    ViewData["Title"] = "Feedbacks";
+    ViewData["Title"] = "Manage Feedbacks";
     Layout = "~/Pages/Shared/_AdminLayout.cshtml";
 }
 
-<div class="main ">
+<div class="main">
 
     <partial name="_AdminPartialTopNav" />
 
@@ -14,12 +14,10 @@
 
     <div class="row">
 
-        <div class="col-12 col-xl-12 pad-grid ds-content">
+        <div class="col-12 col-xl-12 pad-grid">
 
-            <div class="heads-padding text-right">
-                <a asp-page="Index" asp-route-id="" class="btn btn-info btn-sm"> Manage Feedbacks</a>
-            </div>
-            <table class="table">
+
+            <table class="table" id="RsTable">
                 <thead>
                     <tr>
                         <th>
@@ -47,15 +45,14 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.MobileNumber)
                             </td>
-
                             <td>
-                                <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                                <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                                <a class="btn btn-outline-dark" asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                                <a class="btn btn-outline-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
             </div>
+       </div>
     </div>
- </div>

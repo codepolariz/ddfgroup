@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ddfgroup.Data;
 
-namespace ddfgroup.Areas.Contents
+namespace ddfgroup.Areas.Admin.Pages.Comments
 {
     public class IndexModel : PageModel
     {
@@ -18,11 +18,11 @@ namespace ddfgroup.Areas.Contents
             _context = context;
         }
 
-        public IList<PageContents> PageContents { get;set; }
+        public IList<Feedback> Feedback { get;set; }
 
         public async Task OnGetAsync()
         {
-            PageContents = await _context.PageInfo.ToListAsync();
+            Feedback = await _context.Feedback.ToListAsync();
         }
     }
 }

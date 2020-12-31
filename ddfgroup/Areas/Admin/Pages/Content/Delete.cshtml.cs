@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ddfgroup.Data;
 
-namespace ddfgroup.Pages
+namespace ddfgroup.Areas.Admin.Pages.Content
 {
-    public class AboutModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly ddfgroup.Data.ApplicationDbContext _context;
 
-        public AboutModel(ddfgroup.Data.ApplicationDbContext context)
+        public DeleteModel(ddfgroup.Data.ApplicationDbContext context)
         {
             _context = context;
         }
@@ -35,6 +35,24 @@ namespace ddfgroup.Pages
                 return NotFound();
             }
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            PageContents = await _context.PageInfo.FindAsync(id);
+
+            if (PageContents != null)
+            {
+                _context.PageInfo.Remove(PageContents);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
         }
     }
 }
