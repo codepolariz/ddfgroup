@@ -22,7 +22,7 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
 
         public async Task OnGetAsync()
         {
-            CarsModel = await _context.CarsModels
+            CarsModel = await _context.CarsModel
                 .Include(c => c.Brands).ToListAsync();
         }
     }

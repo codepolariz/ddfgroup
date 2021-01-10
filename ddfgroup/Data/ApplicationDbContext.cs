@@ -15,6 +15,10 @@ namespace ddfgroup.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            //builder.Entity<Cars>()
+            //.HasOne(p => p.CarsModel)
+            //.WithMany(b => b.Cars)
+            //.HasForeignKey(p => p.CarsModelId);
             base.OnModelCreating(builder);
         }
 
@@ -23,6 +27,11 @@ namespace ddfgroup.Data
         public DbSet<Feedback>  Feedback { get; set; }
         public DbSet<Brands>  Brands { get; set; }
 
-        public DbSet<CarsModel> CarsModels { get; set; }
+        public DbSet<CarsModel> CarsModel { get; set; }
+        public DbSet<Transmission> Transmissions { get; set; }
+        public DbSet<Cars> Cars { get; set; }
+        public DbSet<CarStatus> CarStatus { get; set; }
+
+
     }
 }

@@ -20,6 +20,7 @@ namespace ddfgroup.Data
 
         [Display(Name = "Page Content")]
         [Required]
+        [DataType(DataType.MultilineText)]
         public String PageContent { get; set; }
     }
 }

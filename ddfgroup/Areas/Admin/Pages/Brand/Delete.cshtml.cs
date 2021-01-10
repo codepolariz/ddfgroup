@@ -28,7 +28,7 @@ namespace ddfgroup.Areas.Admin.Pages.Brand
                 return NotFound();
             }
 
-            Brands = await _context.Brands.FirstOrDefaultAsync(m => m.Id == id);
+            Brands = await _context.Brands.FirstOrDefaultAsync(m => m.BrandsId == id);
 
             if (Brands == null)
             {

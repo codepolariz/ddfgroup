@@ -43,6 +43,7 @@ namespace ddfgroup
                       options.Conventions.AuthorizePage("/Account/Logout");
                       options.Conventions.AllowAnonymousToPage("/Account/Login");
                   });
+            services.AddAntiforgery(options => options.HeaderName = "XSRF TOKEN");
            // );
           
         }

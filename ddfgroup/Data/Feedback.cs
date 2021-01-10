@@ -30,7 +30,8 @@ namespace ddfgroup.Data
         public  string MobileNumber { get; set; }
 
         [Required]
-        [Display(Name= "Comment")]
+        [Display(Name= "Details of Desired Car")]
+        [DataType(DataType.MultilineText)]
         public string Comment { get; set; }
         
     }

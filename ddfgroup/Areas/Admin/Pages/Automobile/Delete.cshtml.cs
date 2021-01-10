@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ddfgroup.Data;
 
-namespace ddfgroup.Areas.Admin.Pages.AutoModels
+namespace ddfgroup.Areas.Admin.Pages.Automobile
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
         }
 
         [BindProperty]
-        public CarsModel CarsModel { get; set; }
+        public Cars Cars { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,10 +28,12 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
                 return NotFound();
             }
 
-            CarsModel = await _context.CarsModels
-                .Include(c => c.Brands).FirstOrDefaultAsync(m => m.Id == id);
+            Cars = await _context.Cars
+                .Include(c => c.Brands)
+                .Include(c => c.CarStatus)
+                .Include(c => c.Transmissions).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (CarsModel == null)
+            if (Cars == null)
             {
                 return NotFound();
             }
@@ -45,11 +47,11 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
                 return NotFound();
             }
 
-            CarsModel = await _context.CarsModels.FindAsync(id);
+            Cars = await _context.Cars.FindAsync(id);
 
-            if (CarsModel != null)
+            if (Cars != null)
             {
-                _context.CarsModels.Remove(CarsModel);
+                _context.Cars.Remove(Cars);
                 await _context.SaveChangesAsync();
             }
 

@@ -36,9 +36,10 @@ body {
 
 .text-right {
     color: #fff !important;
-    font-size: .7em !important;
+    font-size: .85em !important;
     margin-top: 10px;
-    font-style: italic;
+    font-style: italics;
+ 
     
 }
 .text-left {
@@ -150,15 +151,16 @@ div.nav-container {
 
 
 #filter__container__dark {
-    background-color: #FDFDFD;
+    background-color: #036!important;
     border-left: 1px dotted #000;
     border-right: 1px dotted #000;
     border-bottom: 1px dotted #000;
-    padding: 0 20px 20px 20px;
-    color: rgba(21, 91, 147, 1.0);
+    padding: 20 20px 20px 20px;
+    color:#FDFDFD;
     min-height: 140px;
     margin-top: 5px;
     margin-top:30px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     
 }
 
@@ -187,17 +189,18 @@ div.nav-container {
         background-color: #000;
     }
 
-    .car__items {
-        height: auto;
-        margin: 20px auto;
-        padding: 10px;
-        color: #ddd;
-        border-width: 3px;
-        border-style: solid;
-        box-sizing: border-box;
-        border-radius: 1em;
-        border: 1px solid #EAEAEA;
-    }
+.car__items {
+    height: auto;
+    margin: 20px auto;
+    padding: 10px;
+    color: rgba(21, 91, 147, 1.0);
+    border-width: 3px;
+    border-style: solid;
+    box-sizing: border-box;
+    border-radius: .6em;
+    border: 1px solid #EAEAEA;
+    
+}
 
     @media (max-width: 575.98px) {
 
@@ -217,20 +220,21 @@ div.nav-container {
     }
 
 
-    .car__items:hover {
+ /*   .car__items:hover {
         cursor: pointer;
         background-color: #EDEDED;
         border: none;
-    }
+    }*/
 
-    .car__items img {
-        max-width: 100%;
-        max-height: 100%;
-        margin: auto;
-        box-sizing: border-box;
-        border-radius: .3em;
-        border: 1px solid #EAEAEA;
-    }
+.car__items img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    box-sizing: border-box;
+    border-radius: .3em;
+    border: 1px solid #EAEAEA;
+  
+}
 
     .car__title {
         color: red;
@@ -238,7 +242,13 @@ div.nav-container {
         font-size: 15px;
         padding: 5px 0;
     }
-
+.car__items h2
+     {
+         font-size: .9em;
+         color:#fff;
+         background-color:#036;
+         padding:10px;
+    }
     .car__items h2:hover {
         color: #000;
     }
@@ -261,6 +271,7 @@ div.nav-container {
             max-width: 100%;
             max-height: 100%;
             padding-right: 15px;
+            
         }
 
     @media (min-width: 1200px) {
@@ -294,15 +305,14 @@ div.nav-container {
         white-space: nowrap;
         line-height: 60px; /* Vertically center the text there */
     }
-
-
-    /** admin area*/
-
-
+    .price_color
+    {
+        color:#000;
+    }
+/** admin area*/
 .main-body {
     background-color: #f7f7fc !important;
-    margin-left:30px;
-    
+    margin-left: 30px;
 }
 .pad-grid{
     padding:20px !important;
@@ -347,3 +357,4 @@ div.nav-container {
     overflow:hidden;
     
 }
+

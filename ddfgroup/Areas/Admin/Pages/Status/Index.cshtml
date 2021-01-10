@@ -1,0 +1,52 @@
+﻿@page
+@model ddfgroup.Areas.Admin.Pages.Status.IndexModel
+
+@{
+    ViewData["Title"] = "Cars & Shippment Status";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="main">
+
+    <partial name="_AdminPartialTopNav" />
+
+    <div class="padding-left"><h3>@ViewData["Title"]</h3></div>
+
+    <div class="row">
+
+        <div class="col-12 col-xl-12 pad-grid">
+
+            <div class="heads-padding text-right">
+                <a asp-page="Create" asp-route-id="" class="btn btn-info btn-sm"> Add New Status</a>
+            </div>
+
+            <table class="table table-striped table-bordered" id="RsTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CarStatus[0].StatusName)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CarStatus)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StatusName)
+                        </td>
+                   
+                        <td>
+                            <a class="btn btn-outline-info btn-sm" asp-page="./Edit" asp-route-id="@item.CarStatusId">Edit</a>
+                            <a class="btn btn-outline-danger btn-sm" asp-page="./Delete" asp-route-id="@item.CarStatusId">Delete</a>
+                        </td>
+                       
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

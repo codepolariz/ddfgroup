@@ -10,8 +10,8 @@ using ddfgroup.Data;
 namespace ddfgroup.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201230151351_ApplicationDbMigration")]
-    partial class ApplicationDbMigration
+    [Migration("20210107001533_migrateNewest")]
+    partial class migrateNewest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -227,9 +227,9 @@ namespace ddfgroup.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("ddfgroup.Data.AutoBrands", b =>
+            modelBuilder.Entity("ddfgroup.Data.Brands", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BrandsId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -238,9 +238,141 @@ namespace ddfgroup.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("BrandsId");
 
                     b.ToTable("Brands");
+                });
+
+            modelBuilder.Entity("ddfgroup.Data.CarStatus", b =>
+                {
+                    b.Property<int>("CarStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("StatusName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CarStatusId");
+
+                    b.ToTable("CarStatus");
+                });
+
+            modelBuilder.Entity("ddfgroup.Data.Cars", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ArrayFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ArrayFileType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("BrandsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CarTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CarsModelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Cylinder")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayFilePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayFileType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Doors")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExteriorColor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InteriorColor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mileage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModelName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OtherDetails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Price")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TransmissionId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UploadedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandsId");
+
+                    b.HasIndex("CarStatusId");
+
+                    b.HasIndex("TransmissionId");
+
+                    b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("ddfgroup.Data.CarsModel", b =>
+                {
+                    b.Property<int>("CarsModelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BrandsId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("CarsModelId");
+
+                    b.HasIndex("BrandsId");
+
+                    b.ToTable("CarsModel");
                 });
 
             modelBuilder.Entity("ddfgroup.Data.Feedback", b =>
@@ -292,6 +424,21 @@ namespace ddfgroup.Migrations
                     b.ToTable("PageInfo");
                 });
 
+            modelBuilder.Entity("ddfgroup.Data.Transmission", b =>
+                {
+                    b.Property<int>("TransmissionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TransmissionId");
+
+                    b.ToTable("Transmissions");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -339,6 +486,36 @@ namespace ddfgroup.Migrations
                     b.HasOne("ddfgroup.Data.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ddfgroup.Data.Cars", b =>
+                {
+                    b.HasOne("ddfgroup.Data.Brands", "Brands")
+                        .WithMany("Cars")
+                        .HasForeignKey("BrandsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ddfgroup.Data.CarStatus", "CarStatus")
+                        .WithMany("Cars")
+                        .HasForeignKey("CarStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ddfgroup.Data.Transmission", "Transmissions")
+                        .WithMany("Cars")
+                        .HasForeignKey("TransmissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ddfgroup.Data.CarsModel", b =>
+                {
+                    b.HasOne("ddfgroup.Data.Brands", "Brands")
+                        .WithMany("CarsModel")
+                        .HasForeignKey("BrandsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

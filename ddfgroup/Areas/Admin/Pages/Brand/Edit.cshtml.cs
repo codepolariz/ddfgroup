@@ -29,7 +29,7 @@ namespace ddfgroup.Areas.Admin.Pages.Brand
                 return NotFound();
             }
 
-            Brands = await _context.Brands.FirstOrDefaultAsync(m => m.Id == id);
+            Brands = await _context.Brands.FirstOrDefaultAsync(m => m.BrandsId == id);
 
             if (Brands == null)
             {
@@ -55,7 +55,7 @@ namespace ddfgroup.Areas.Admin.Pages.Brand
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BrandsExists(Brands.Id))
+                if (!BrandsExists(Brands.BrandsId))
                 {
                     return NotFound();
                 }
@@ -70,7 +70,7 @@ namespace ddfgroup.Areas.Admin.Pages.Brand
 
         private bool BrandsExists(int id)
         {
-            return _context.Brands.Any(e => e.Id == id);
+            return _context.Brands.Any(e => e.BrandsId == id);
         }
     }
 }

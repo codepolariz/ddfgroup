@@ -1,0 +1,173 @@
+﻿@page
+@model ddfgroup.Areas.Admin.Pages.Automobile.CreateModel
+
+@{
+    ViewData["Title"] = "Upload Car";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main ">
+    <partial name="_AdminPartialTopNav" />
+
+    <div class="main-body">
+
+        <div class="padding-left"><h3>@ViewData["Title"]</h3></div>
+
+        <div class="row">
+
+            <div class="col-12 col-xl-12 ">
+
+                <div class="heads-padding text-right">
+                    <a asp-page="Index" asp-route-id="" class="btn btn-success btn-sm"> Manage Cars</a>
+                </div>
+            </div>
+
+
+
+            <form method="post" enctype="multipart/form-data">
+                
+                <div class="col-md-12 col-xl-12 col-lg-12  pad-grid form-row border border-dark">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group col-md-6 col-xl-4 col-lg-4">
+
+                        <label asp-for="Cars.BrandsId" class="control-label"></label>
+                        <select asp-for="Cars.BrandsId" class="custom-select my-1 mr-sm-12" id="inlineFormCustomSelectPref" asp-items="ViewBag.BrandsId">
+                            <option value=""> Select a Brand</option>
+                        </select>
+                        <span asp-validation-for="Cars.BrandsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6 col-xl-4 col-lg-4">
+                        <label asp-for="Cars.CarsModelId" class="control-label"></label>
+                        <select asp-for="Cars.CarsModelId" class="custom-select my-1 mr-sm-12" id="inlineFormCustomSelectPr" asp-items="ViewBag.CarsModelId">
+                            <option value=""> Select a Model</option>
+                        </select>
+                        <span asp-validation-for="Cars.CarsModelId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6 col-xl-4 col-lg-4">
+                        <label asp-for="Cars.TransmissionId" class="control-label"></label>
+                        <select asp-for="Cars.TransmissionId" class="custom-select my-1 mr-sm-12" id="inlineFormCustomSelectPre" asp-items="ViewBag.TransmissionId">
+                            <option value=""> Select Transmission</option>
+                        </select>
+                        <span asp-validation-for="Cars.TransmissionId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6 col-xl-4 col-lg-4">
+                        <label asp-for="Cars.Name" class="control-label"></label>
+                        <input asp-for="Cars.Name" class="form-control" />
+                        <span asp-validation-for="Cars.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6 col-md-4 col-xl-3 col-lg-3">
+                        <label asp-for="Cars.Price" class="control-label"></label>
+                        <input asp-for="Cars.Price" class="form-control" />
+                        <span asp-validation-for="Cars.Price" class="text-danger"></span>
+                    </div>
+
+
+
+                    <div class="form-group col-sm-3 col-md-4 col-xl-3 col-lg-3">
+                        <label asp-for="Cars.Mileage" class="control-label"></label>
+                        <input asp-for="Cars.Mileage" class="form-control" />
+                        <span asp-validation-for="Cars.Mileage" class="text-danger"></span>
+                    </div>
+
+
+                    @*<div class="form-group col-sm-6 col-md-4 col-xl-2 col-lg-2">
+            <label asp-for="Cars.Year" class="control-label"></label>
+            <input asp-for="Cars.Year" class="form-control" />
+            <span asp-validation-for="Cars.Year" class="text-danger"></span>
+        </div>*@
+
+
+
+                    <div class="form-group col-sm-3 col-md-3 col-xl-4 col-lg-4">
+                        <label asp-for="Cars.InteriorColor" class="control-label"></label>
+                        <input asp-for="Cars.InteriorColor" class="form-control" />
+                        <span asp-validation-for="Cars.InteriorColor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-3 col-md-3 col-xl-4 col-lg-4">
+                        <label asp-for="Cars.ExteriorColor" class="control-label"></label>
+                        <input asp-for="Cars.ExteriorColor" class="form-control" />
+                        <span asp-validation-for="Cars.ExteriorColor" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-sm-3 col-md-4 col-xl-4 col-lg-4">
+                        <label asp-for="Cars.Doors" class="control-label"></label>
+                        <select asp-for="Cars.Doors" class="custom-select my-1 mr-sm-12" id="inlineFormCustomSelectPref" asp-items="ViewBag.Doors">
+                            <option value="">Select Car Doors</option>
+                        </select>
+                        <span asp-validation-for="Cars.Doors" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-sm-6 col-md-6 col-xl-3 col-lg-3">
+                        <label asp-for="Cars.CarStatusId" class="control-label"></label>
+                        <select asp-for="Cars.CarStatusId" class="custom-select my-1 mr-sm-12" id="inlineFormCustomSelectPref" asp-items="ViewBag.CarStatusId">
+                            <option value="">Select Car Status</option>
+                        </select>
+                        <span asp-validation-for="Cars.CarStatusId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-sm-6 col-md-4 col-xl-2 col-lg-2">
+                        <label asp-for="Cars.CarTitle" class="control-label"></label>
+                        <select asp-for="Cars.CarTitle" class="custom-select my-1 mr-sm-12" id="inlineFormCustomSelectPref" asp-items="ViewBag.CarTitle">
+                            <option value="">Select Car Title</option>
+                        </select>
+                        <span asp-validation-for="Cars.CarTitle" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-sm-6 col-md-4 col-xl-2 col-lg-2">
+                        <label asp-for="Cars.Cylinder" class="control-label"></label>
+                        <select asp-for="Cars.Cylinder" class="custom-select my-1 mr-sm-12" id="inlineFormCustomSelectPref" asp-items="ViewBag.Cylinder">
+                            <option value="">Select Car Cylinder</option>
+                        </select>
+                        <span asp-validation-for="Cars.Cylinder" class="text-danger"></span>
+                    </div>
+
+
+
+                    <div class="form-group col-sm-12 col-md-12 col-xl-12 col-lg-12">
+                        <label asp-for="Cars.OtherDetails" class="control-label"></label>
+                        @Html.TextAreaFor(m => m.Cars.OtherDetails, new
+                      {
+                          rows = "17",
+                          style = "resize:none;width:95%; margin:auto; background-color:#FFF",
+                          placeholder = Html.DisplayNameFor(m => m.Cars.OtherDetails),
+                          @class = "form-control input-lg textarea-editor"
+                       })
+                        <span asp-validation-for="Cars.OtherDetails" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-sm-12 col-md-8 col-xl-6 col-lg-6">
+                        <label asp-for="FileUpload" class="control-label"></label> ((Main Display Picturer))
+                        <input type="file" asp-for="FileUpload" id="FileUpload" class="custom-select my-1 mr-sm-12">
+                        <span asp-validation-for="FileUpload" class="text-danger"></span>
+                        <div class="images"></div>
+                    </div>
+
+
+                    <div class="form-group col-sm-12 col-md-8 col-xl-6 col-lg-6">
+                        <label asp-for="MultipleFileUpload" class="control-label"></label> ((Main Display Picturer))
+                        <input type="file" asp-for="MultipleFileUpload" class="custom-select my-1 mr-sm-12">
+                        <span asp-validation-for="MultipleFileUpload" class="text-danger"></span>
+                    </div>
+
+
+                    <div class=" form-group col-sm-12 col-md-12 col-xl-12 col-lg-12">
+                        <input type="submit" value="Create" id="btnUpload" class="btn btn-primary btn-lg" />
+                    </div>
+
+
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

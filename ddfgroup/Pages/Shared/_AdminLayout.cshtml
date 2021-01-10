@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DDF GROUP</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="~/lib/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="~/css/site.css" />
@@ -11,7 +14,8 @@
 
     @{ string Dashboard = "Analytics Dashboard";
         string Page = "Create Page Content";
-         string EditPage = "Edit Page";
+        string EditPage = "Edit Page";
+        string Upload2 = "Upload Car";
 
         /* isolate dashboard bootstrap from the entire page for performance*/
         if (ViewData["Title"].ToString() != Dashboard)
@@ -21,7 +25,7 @@
 
         }
         /* Only include necessary whswyg assets files in editors pages only*/
-        if (ViewData["Title"].ToString() == Page || ViewData["Title"].ToString() == EditPage)
+        if (ViewData["Title"].ToString() == Page || ViewData["Title"].ToString() == EditPage || ViewData["Title"].ToString() == Upload2)
         {
             <link rel="stylesheet" href="~/summernote-0.8.18/summernote.min.css" />
         }
@@ -61,7 +65,8 @@
     @{
         String Analytics = "Analytics Dashboard";
         String Page2 = "Create Page Content";
-        String EditPage = "Edit Page";
+        String EditPage2 = "Edit Page";
+        string Upload = "Upload Car";
 
 
         if (ViewData["Title"].ToString() == Analytics)
@@ -69,9 +74,20 @@
             <script src="~/theme/js/Analytics.js"></script>
         }
 
+        if (ViewData["Title"].ToString() == Upload)
+        {
+            <script src="~/js/ResizeImage.js"></script>
+            <script src="~/js/jquery.priceformat.js"></script>
+            <script>
+                $('#Cars_Price').priceFormat();
 
 
-        if (ViewData["Title"].ToString() == Page2 || ViewData["Title"].ToString() == EditPage)
+
+            </script>
+        }
+
+
+        if (ViewData["Title"].ToString() == Page2 || ViewData["Title"].ToString() == EditPage2 || ViewData["Title"].ToString() == Upload)
         {
 
             <script src="~/summernote-0.8.18/summernote.min.js"></script>

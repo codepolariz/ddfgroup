@@ -1,0 +1,137 @@
+﻿@page
+@model ddfgroup.Areas.Admin.Pages.Automobile.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main ">
+    <partial name="_AdminPartialTopNav" />
+
+    <div class="main-body">
+
+        <div class="padding-left"><h3>@ViewData["Title"]</h3></div>
+
+        <div class="row">
+
+            <div class="col-12 col-xl-12 ">
+
+                <div class="heads-padding text-right">
+                    <a asp-page="Index" asp-route-id="" class="btn btn-success btn-sm"> Manage Cars</a>
+                </div>
+            </div>
+
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.CarTitle)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.CarTitle)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.Mileage)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.Mileage)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.Cylinder)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.Cylinder)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.Doors)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.Doors)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.InteriorColor)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.InteriorColor)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.ExteriorColor)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.ExteriorColor)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.Year)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.Year)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.OtherDetails)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.OtherDetails)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.DisplayFileName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.DisplayFileName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.UploadedDate)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.UploadedDate)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.Brands)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.Brands.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.CarsModelId)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.CarsModelId)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.ModelName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.ModelName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.Transmissions)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.Transmissions.TransmissionId)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cars.CarStatus)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cars.CarStatus.StatusName)
+                </dd>
+            </dl>
+
+            <form method="post">
+                <input type="hidden" asp-for="Cars.Id" />
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                <a asp-page="./Index">Back to List</a>
+            </form>
+        </div>
+</div>
+</div>

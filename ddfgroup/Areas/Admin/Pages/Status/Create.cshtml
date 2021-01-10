@@ -1,0 +1,46 @@
+﻿@page
+@model ddfgroup.Areas.Admin.Pages.Status.CreateModel
+
+@{
+    ViewData["Title"] = "Create New Status";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main ">
+    <partial name="_AdminPartialTopNav" />
+
+    <div class="main-body">
+
+        <div class="padding-left"><h3>@ViewData["Title"]</h3></div>
+
+        <div class="row">
+
+            <div class="col-12 col-xl-12 ">
+
+                <div class="heads-padding text-right">
+                    <a asp-page="Index" asp-route-id="" class="btn btn-success btn-sm"> Manage Auto Models</a>
+                </div>
+            </div>
+
+
+            <div class="col-md-4 col-xl-4 col-lg-4 ds-content pad-grid">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="CarStatus.StatusName" class="control-label"></label>
+                        <input asp-for="CarStatus.StatusName" class="form-control" />
+                        <span asp-validation-for="CarStatus.StatusName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+          
+</div>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

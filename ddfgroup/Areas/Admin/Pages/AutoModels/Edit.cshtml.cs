@@ -29,14 +29,14 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
                 return NotFound();
             }
 
-            CarsModel = await _context.CarsModels
-                .Include(c => c.Brands).FirstOrDefaultAsync(m => m.Id == id);
+            CarsModel = await _context.CarsModel
+                .Include(c => c.Brands).FirstOrDefaultAsync(m => m.CarsModelId == id);
 
             if (CarsModel == null)
             {
                 return NotFound();
             }
-           ViewData["BrandsId"] = new SelectList(_context.Brands, "Id", "Name");
+           ViewData["BrandsId"] = new SelectList(_context.Brands, "BrandsId", "Name");
             return Page();
         }
 
@@ -50,14 +50,14 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
             }
 
             _context.Attach(CarsModel).State = EntityState.Modified;
-
+            CarsModel.Year = CarsModel.Date.Year;
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CarsModelExists(CarsModel.Id))
+                if (!CarsModelExists(CarsModel.CarsModelId))
                 {
                     return NotFound();
                 }
@@ -72,7 +72,7 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
 
         private bool CarsModelExists(int id)
         {
-            return _context.CarsModels.Any(e => e.Id == id);
+            return _context.CarsModel.Any(e => e.CarsModelId == id);
         }
     }
 }

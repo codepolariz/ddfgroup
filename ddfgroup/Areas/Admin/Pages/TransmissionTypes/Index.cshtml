@@ -1,0 +1,49 @@
+﻿@page
+@model ddfgroup.Areas.Admin.Pages.TransmissionTypes.IndexModel
+
+@{
+    ViewData["Title"] = "Tranmissions Types";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main">
+
+    <partial name="_AdminPartialTopNav" />
+
+    <div class="padding-left"><h3>@ViewData["Title"]</h3></div>
+
+    <div class="row">
+
+        <div class="col-12 col-xl-12 pad-grid">
+
+            <div class="heads-padding text-right">
+                <a asp-page="Create" asp-route-id="" class="btn btn-info btn-sm"> New Transmission</a>
+            </div>
+
+            <table class="table table-striped table-bordered" id="RsTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Transmission[0].Name)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Transmission)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-info btn-sm" asp-page="./Edit" asp-route-id="@item.TransmissionId">Edit</a>
+                                
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>

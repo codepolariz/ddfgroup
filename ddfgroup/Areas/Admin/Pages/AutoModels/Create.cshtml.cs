@@ -22,7 +22,8 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
 
         public IActionResult OnGet()
         {
-        ViewData["BrandsId"] = new SelectList(_context.Brands, "Id", "Name",new SelectListItem("Select a Brand",""));
+          ViewData["BrandsId"] = new SelectList(_context.Brands, "BrandsId", "Name");
+          
             return Page();
         }
 
@@ -37,8 +38,8 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
             {
                 return Page();
             }
-
-            _context.CarsModels.Add(CarsModel);
+            CarsModel.Year = CarsModel.Date.Year;
+            _context.CarsModel.Add(CarsModel);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
