@@ -1,0 +1,83 @@
+﻿@page
+@model ddfgroup.Pages.DetailsModel
+@{
+
+    ViewData["Title"] = "Car Informatiopn";
+
+}
+
+<div class="sliderinner___container"></div>
+
+<div class="container" style="background-color:#EFEFEF; padding:15px;">
+    <div class="row">
+        <div class="col-sm-12 col-lg-8 col-xl-8 col-md-8">
+            <div class="car___details__Container">
+                <img src="~/upload/@Html.DisplayFor(model => model.Cars.ThumbFolderName)/thumbs/@Html.DisplayFor(model => model.Cars.ArrayFileName)" class="rounded mx-auto d-block" />
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">@Html.DisplayName("Brand") : @Html.DisplayFor(model => model.Cars.Brands.Name)</th>
+                        <td>@Html.DisplayName("Model") : @Html.DisplayFor(model => model.Cars.ModelName)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">@Html.DisplayName("Year") : @Html.DisplayFor(model => model.Cars.Year)</th>
+                        <td>@Html.DisplayName("Price") : @Html.DisplayFor(model => model.Cars.Price)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">@Html.DisplayName("Transmission") : @Html.DisplayFor(model => model.Cars.Transmissions.Name)</th>
+                        <td>@Html.DisplayName("Title") : @Html.DisplayFor(model => model.Cars.CarTitle)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">@Html.DisplayName("Mileage") : @Html.DisplayFor(model => model.Cars.Mileage)</th>
+                        <td>@Html.DisplayName("Cylinder") : @Html.DisplayFor(model => model.Cars.Cylinder)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">@Html.DisplayName("Doors") : @Html.DisplayFor(model => model.Cars.Doors)</th>
+                        <td>@Html.DisplayName("Exterior Color") : @Html.DisplayFor(model => model.Cars.ExteriorColor)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">@Html.DisplayName("Exterior Color") : @Html.DisplayFor(model => model.Cars.ExteriorColor)</th>
+                        <td>@Html.DisplayName("Date Uploaded") : @Html.DisplayFor(model => model.Cars.UploadedDate)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+            </table>
+            @Html.Raw(ViewBag.Details)
+        </div>
+    
+        <div class="col-sm-12 col-md-4 col-xl-4 col-lg-4 car__container__pricing">
+            <h2> Price: @Html.DisplayFor(model => model.Cars.Price)</h2>
+
+               @Html.Raw(ViewBag.Content)
+        <div class="Social-media">
+            <img src="~/images/facebook.png" />
+            <img src="~/images/twitter.jpg" />
+            <img src="~/images/instagram.jpg" />
+            <img src="~/images/watsapp.png" />
+        </div>
+        </div>
+    </div>
+    </div>

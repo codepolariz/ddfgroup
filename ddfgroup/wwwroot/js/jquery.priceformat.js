@@ -345,7 +345,7 @@
    * Defaults *
    ************/
   $.fn.priceFormat.defaults = {
-    prefix: 'US$ ',
+    prefix: '$',
     suffix: '',
     centsSeparator: '.',
     thousandsSeparator: ',',

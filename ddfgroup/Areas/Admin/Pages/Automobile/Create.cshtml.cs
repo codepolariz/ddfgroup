@@ -15,6 +15,7 @@ using System.IO;
 using System.Net.Http.Headers;
 using System.Drawing;
 using System.Drawing.Imaging;
+using ImageMagick;
 
 namespace ddfgroup.Areas.Admin.Pages.Automobile
 {
@@ -43,6 +44,9 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
         public string NewThumbString { get; set; }
         public string Message { get; set; }
         public string FileNameRenamed { get; set; }
+        public string NewFileString { get; set; }
+        private int Cid { get; set; }
+        //public object CarDetails {get; set;}
 
 
         public CreateModel(ddfgroup.Data.ApplicationDbContext context, IHostingEnvironment hostingEnvironment)
@@ -86,9 +90,9 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
         [BindProperty]
         public Cars Cars { get; set; }
 
-         
 
-        
+
+
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -99,13 +103,13 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
             if (!ModelState.IsValid)
             {
                 this.Content("One or More Fields is invalid");
-                
+
                 return Page();
             }
 
             var ModelId = Cars.CarsModelId;
             var ModelName = _context.CarsModel.FindAsync(ModelId).Result;
-             
+
             if (ModelName == null)
             {
                 return NotFound();
@@ -116,7 +120,7 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
                 UploadFolder = "upload";
                 WebRoot = _hostingEnvironment.WebRootPath;
                 UploadDir = System.IO.Path.Combine(WebRoot, UploadFolder);
-                
+
 
                 if (!Directory.Exists(UploadDir))
                 {
@@ -125,50 +129,57 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
                 //long size = FileUpload.Sum(f => f.Length);
 
                 //Home file upload
-                
+
 
                 NewString = CreateRandomString();
-                  
+                NewFileString = CreateRandomString();
                 FileName = ContentDispositionHeaderValue.Parse(FileUpload.ContentDisposition).FileName.Trim('"');
-                Directory.CreateDirectory(UploadDir + "/" + NewString + "/" + "temp");
-                DynamicImageFolder = System.IO.Path.Combine(UploadDir, NewString, "temp");
-                var ImageFolder = UploadDir + "/"+ NewString;
-                FileNameRenamed = GetUniqueFileName(FileName);     // store final final filename
-                string FullPath = Path.Combine(DynamicImageFolder, FileNameRenamed);     // create dynamic string for unique folder
+                Directory.CreateDirectory(UploadDir + "/" + NewString);
+                DynamicImageFolder = System.IO.Path.Combine(UploadDir, NewString);
+                //var ImageFolder = UploadDir + "/" + NewString;
+                // store final final filename
+                string FullPath = Path.Combine(DynamicImageFolder, FileName);     // create dynamic string for unique folder
                 FileType = System.IO.Path.GetExtension(FileName);
+                FileNameRenamed = NewFileString + FileType;
                 if (FileUpload.Length > 0)
                 {
-                   
+
                     using (var stream = new FileStream(FullPath, FileMode.Create))
                     {
                         FileUpload.CopyTo(stream);
-                        //await Task.Delay(100);
-                        Resize("C:\dotnetcore\ddfgroup\ddfgroup\wwwroot\upload\86e3016b-16e1-4c\temp\2019-lexus-lx-570-002-f51479eb9d802f3409bef2_8d1a6.jpg", 200,200);
+                        ResizeToFixedSize(FullPath, FileName);  //crop the uploaded file and rename it
+                        System.IO.FileInfo fi = new System.IO.FileInfo(FullPath + FileName);  // access the cropped image directory
+                        fi.MoveTo(UploadDir + "/" + NewString + "/" + NewFileString + FileType);
+                        //fi.Delete(FullPath+FileName);
+
                     }
                 }
+
+
             }
 
-            if (MultipleFileUpload.Count>0 &&  MultipleFileUpload != null)
+            if (MultipleFileUpload.Count > 0 && MultipleFileUpload != null)
             {
-                 NewThumbString = CreateRandomString();
+                NewThumbString = CreateRandomString();
                 Directory.CreateDirectory(UploadDir + "/" + NewThumbString + "/" + "thumbs");
                 int counter = 0;
                 foreach (IFormFile ModelFile in MultipleFileUpload)    //Home file upload
                 {
 
-                ArrFileName = ContentDispositionHeaderValue.Parse(ModelFile.ContentDisposition).FileName.Trim('"');
-                ThumbImageFolder = System.IO.Path.Combine(UploadDir , NewThumbString,"thumbs" );
-                string FullPath = Path.Combine(ThumbImageFolder, GetUniqueFileName(ArrFileName));     // create dynamic string for unique folder
-                //FileType = System.IO.Path.GetExtension(FileName);
-                if (MultipleFileUpload.Count > 0)
-                {
-                    using (var stream = new FileStream(FullPath, FileMode.Create))
+                    ArrFileName = ContentDispositionHeaderValue.Parse(ModelFile.ContentDisposition).FileName.Trim('"');
+                    ThumbImageFolder = System.IO.Path.Combine(UploadDir, NewThumbString, "thumbs");
+                    ArrFileName = GetUniqueFileName(ArrFileName);
+                    string FullPath = Path.Combine(ThumbImageFolder, ArrFileName);     // create dynamic string for unique folder
+                                                                                                          //FileType = System.IO.Path.GetExtension(FileName);
+                    if (MultipleFileUpload.Count > 0)
                     {
+                        using (var stream = new FileStream(FullPath, FileMode.Create))
+                        {
                             ModelFile.CopyTo(stream);
+                        }
                     }
-                }
                     counter++;
-                 }
+                }
 
                 Cars.ModelName = ModelName.Name;     // Map Cars ModelName Object to CarsModel Name Object
                 Cars.Year = ModelName.Year;
@@ -177,19 +188,19 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
                 Cars.FolderName = NewString;
                 Cars.ThumbFolderName = NewThumbString;
                 Cars.ArrayFileName = ArrFileName;
-                
+
                 //Cars.ArrayFileName = ArrFileName.ToString(); //// check
                 _context.Cars.Add(Cars);
                 await _context.SaveChangesAsync();
-                
+
                 //-------------------------------- resize image
 
                 Message = "Successful;";
                 return RedirectToPage("./Index");
             }
 
-                return this.Content("Failed");
-            }
+            return this.Content("Failed");
+        }
 
         private string GetUniqueFileName(string FName)
         {
@@ -206,27 +217,26 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
         }
 
 
-
-        public static void Resize(string path, int nWidth, int nHeight)
+        public static void ResizeToFixedSize(string file, string newfilename)
         {
-            using (var result = new Bitmap(nWidth, nHeight))
+            // Read from file
+            using (var image = new MagickImage(file))
             {
-                using (var input = new Bitmap(path))
-                {
-                    using (Graphics g = Graphics.FromImage((System.Drawing.Image)result))
-                    {
-                        g.DrawImage(input, 0, 0, nWidth, nHeight);
-                    }
-                }
+                var size = new MagickGeometry(280, 150);
+                // This will resize the image to a fixed size without maintaining the aspect ratio.
+                // Normally an image will be resized to fit inside the specified size.
+                size.IgnoreAspectRatio = true;
 
-                var ici = ImageCodecInfo.GetImageEncoders().FirstOrDefault(ie => ie.MimeType == "image/jpeg");
-                var eps = new EncoderParameters(1);
-                eps.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100L);
-                result.Save(path, ici, eps);
+                image.Resize(size);
+
+                // Save the result
+                image.Write(file + newfilename);
+
+
             }
         }
+
+
+       
     }
-    
-
-
 }

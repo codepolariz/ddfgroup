@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace ddfgroup.Data
 {
@@ -43,6 +44,7 @@ namespace ddfgroup.Data
 
         [DataType(DataType.MultilineText)]
         [Display(Name="Other Details about car")]
+        [AllowHtml]
         public string OtherDetails { get; set; }
         public string FolderName { get; set; }
         public string DisplayFileName { get; set; }

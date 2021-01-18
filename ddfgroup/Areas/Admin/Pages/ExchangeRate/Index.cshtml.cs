@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ddfgroup.Data;
 
-namespace ddfgroup.Areas.Admin.Pages.Automobile
+namespace ddfgroup.Areas.Admin.Pages.ExchangeRate
 {
     public class IndexModel : PageModel
     {
@@ -18,15 +18,11 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
             _context = context;
         }
 
-        public IList<Cars> Cars { get;set; }
+        public IList<Currency> Currency { get;set; }
 
         public async Task OnGetAsync()
         {
-            Cars = await _context.Cars
-                .Include(c => c.Brands)
-                .Include(c => c.CarStatus)
-                .Include(c => c.Transmissions).ToListAsync();
-
+            Currency = await _context.Currencies.ToListAsync();
         }
     }
 }

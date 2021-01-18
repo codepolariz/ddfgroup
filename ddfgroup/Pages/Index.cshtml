@@ -84,62 +84,10 @@
             <div class="col-12 col-md-6 col-lg-3 col-sm-12 col-xl-3 car__items">
                 <img src="~/upload/@Html.DisplayFor(items => mycars.FolderName)/@Html.DisplayFor(items => mycars.DisplayFileName)" />
                 <h1 class="car__title"> @Html.DisplayFor(items => mycars.ModelName)  -  <span class="price_color">(@str.Substring(2, str.Length - 2)) </span></h1>
-                <h2> <span><a asp-page = ""> Pay in USD</a> </span> <span class="float-right"><a asp-page ="">Pay in Naira</a></span></h2>
+                <h2> <span><a asp-page = "/Details" asp-page-handler="Details" asp-route-cid="@mycars.Id"> Pay in USD</a> </span> <span class="float-right"><a asp-page ="/NRate" asp-page-handler="Naira" asp-route-cid="@mycars.Id">Pay in Naira</a></span></h2>
 
             </div>
         }
-            <!--<div class="col-12 col-md-6 col-lg-3 col-sm-12 col-xl-3 car__items">
-
-            <img src="~/images/01-mercedes-benz-c-class-2018-w-205-world-premiere-3400x1440.jpg" />
-            <h1 class="car__title">Toyota Camry 2018</h1>
-            <h2>$18,000</h2>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-3 col-sm-12 col-xl-3 car__items">
-
-            <img src="~/images/rav4.webp" />
-            <h1 class="car__title"> RAV4 2020</h1>
-            <h2>$20,000</h2>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-3 col-sm-12 col-xl-3 car__items">
-
-            <img src="~/images/01-mercedes-benz-c-class-2018-w-205-world-premiere-3400x1440.jpg" />
-            <h1 class="car__title"> Lexus RX 4500h 2016</h1>
-            <h2>$12,000</h2>
-
-        </div>-->
-
-
-            <!-- start rwo2 cars grid-->
-
-            <!--<div class="col-12 col-md-6 col-lg-3 col-sm-12 col-xl-3 car__items">
-            <img src="~/images/01-mercedes-benz-c-class-2018-w-205-world-premiere-3400x1440.jpg" />
-            <h1 class="car__title"> Mercedez Benz 2018</h1>
-            <h2>$14,000</h2>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-3 col-sm-12 col-xl-3 car__items">
-
-            <img src="~/images/01-mercedes-benz-c-class-2018-w-205-world-premiere-3400x1440.jpg" />
-            <h1 class="car__title">Toyota Camry 2018</h1>
-            <h2>$18,000</h2>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-3 col-sm-12 col-xl-3 car__items">
-
-            <img src="~/images/rav4.webp" />
-            <h1 class="car__title"> RAV4 2020</h1>
-            <h2>$20,000</h2>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-3 col-sm-12 col-xl-3 car__items">
-
-            <img src="~/images/01-mercedes-benz-c-class-2018-w-205-world-premiere-3400x1440.jpg" />
-            <h1 class="car__title"> Lexus RX 4500h 2016</h1>
-            <h2>$12,000</h2>
-
-        </div>-->
         </div>
      
 </div>

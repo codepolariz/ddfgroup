@@ -102,9 +102,64 @@ div.nav-container {
     clear:both;
 }
 
+    .sliderinner___container 
+    {
+        width:100%;
+        height:20px;
+        overflow:hidden;
+    }
+    .sliderinner___container img
+    {
+        max-width:100%;   
+    }
+    .car___details__Container
+    {
+     background-color:#EFEFEF;
+     border-radius:3px;
+     border:solid 1px #ccc;
+     height:440px;
+     width:auto;
+     padding:15px;
+     margin-top:20px;
+     margin-bottom:20px;
+     overflow:hidden;
+    }
+    .car___details__Container img
+    {
+        max-height:100%;
+        max-width:100%;
+    }
+    @media (max-width:576px)
+    {
+        .car___details__Container{ height:auto;}
+    }
+
+    .car__container__pricing {
+
+        background-color: #036!important;
+        height:500px;
+        margin-top:20px;
+        color:#fff;
+    }
+        .car__container__pricing h2
+        {
+            color:#fff;
+            margin-top:20px;
+        }
+
+        .Social-media
+        {
+        background-color:#fff;
+        padding:10px;
+        border-radius:2px;
+        }
+
+        .Social-media img
+        {
+            padding:10px;
+        }
 /*  adjust images on small devices*/
 @media (max-width: 576px) {
-
     .slider___container  {
         max-width: 100%;
         height:100%;
@@ -220,11 +275,10 @@ div.nav-container {
     }
 
 
- /*   .car__items:hover {
-        cursor: pointer;
-        background-color: #EDEDED;
-        border: none;
-    }*/
+    .car__items span a
+    {
+        color:#fff;
+    }
 
 .car__items img {
     max-width: 100%;
@@ -233,7 +287,6 @@ div.nav-container {
     box-sizing: border-box;
     border-radius: .3em;
     border: 1px solid #EAEAEA;
-  
 }
 
     .car__title {
@@ -305,10 +358,12 @@ div.nav-container {
         white-space: nowrap;
         line-height: 60px; /* Vertically center the text there */
     }
-    .price_color
+    .price_color 
     {
         color:#000;
     }
+    
+
 /** admin area*/
 .main-body {
     background-color: #f7f7fc !important;

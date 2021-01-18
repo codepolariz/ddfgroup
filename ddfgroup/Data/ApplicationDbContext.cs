@@ -31,6 +31,7 @@ namespace ddfgroup.Data
         public DbSet<Transmission> Transmissions { get; set; }
         public DbSet<Cars> Cars { get; set; }
         public DbSet<CarStatus> CarStatus { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
 
 
     }
