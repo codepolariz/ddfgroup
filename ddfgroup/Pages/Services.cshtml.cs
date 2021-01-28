@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ddfgroup.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 
 namespace ddfgroup.Pages
 {
@@ -15,20 +12,21 @@ namespace ddfgroup.Pages
 
         public ServicesModel(ApplicationDbContext Context)
         {
-            _context=Context;
+            _context = Context;
         }
 
         [BindProperty]
         public PageContents PageContents { get; set; }
         public async Task<IActionResult> OnGet(int? Id)
         {
-            if(Id==null)
+            if (Id == null)
             {
                 return NotFound();
             }
-           PageContents = await _context.PageInfo.FindAsync(Id);
+            PageContents = await _context.PageInfo.FindAsync(Id);
+            ViewData["Content"] = PageContents.PageContent;
 
-            if(PageContents == null)
+            if (PageContents == null)
             {
                 return NotFound();
             }

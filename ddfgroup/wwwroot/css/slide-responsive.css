@@ -219,4 +219,10 @@ a {
     right: 0;
     transform: translateX(100%);
 }
+
+#Indicator
+{
+    background-color:#000;
+    border-radius:50%;
+    padding:10px;
 }

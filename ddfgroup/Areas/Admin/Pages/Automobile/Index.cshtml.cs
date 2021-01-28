@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using ddfgroup.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ddfgroup.Data;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ddfgroup.Areas.Admin.Pages.Automobile
 {
@@ -18,7 +15,7 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
             _context = context;
         }
 
-        public IList<Cars> Cars { get;set; }
+        public IList<Cars> Cars { get; set; }
 
         public async Task OnGetAsync()
         {

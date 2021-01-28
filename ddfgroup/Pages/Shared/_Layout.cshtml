@@ -23,7 +23,7 @@
 
         <div class="lay-inn">
             <div class="site__logo">
-                <a class="" asp-area="" asp-controller="Home" asp-action="Index"> </a>
+                <a class="" asp-area=""> </a>
                 <img src="~/images/logo.png" />
             </div>
 
@@ -45,9 +45,9 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; DDF GROUP LLC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Home | </a>
-            <a asp-area="About">About | </a>
-            <a asp-area="Services">Services | </a>
-            <a asp-area="Contact">Contact US</a>
+            <a asp-area="/About" asp-route-Id="1">About | </a>
+            <a asp-area="/Services" asp-route-Id="3">Services | </a>
+            <a asp-area="/Contact" asp-route-Id="2">Contact US</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -69,8 +69,8 @@
                 $.ajax({
                     type: "post",
                     contentType: 'application/json',
-                    url:"/Index?handler=Makes",
-                        beforeSend: function (xhr) {
+                    url: "/Index?handler=Makes",
+                    beforeSend: function (xhr) {
                         xhr.setRequestHeader("XSRF-TOKEN",
                             $('input:hidden[name="__RequestVerificationToken"]').val());
                     },
@@ -86,6 +86,35 @@
 
         });
     </script>
+
+    @*<script>
+        $(document).ready(function () {
+            var change_img_time = 5000;
+            var transition_speed = 300;
+
+            var simple_slideshow = $("#exampleSlider"),
+                listItems = simple_slideshow.children('li'),
+                listLen = listItems.length,
+                i = 0,
+
+                changeList = function () {
+
+                    listItems.eq(i).fadeOut(transition_speed, function () {
+                        i += 1;
+                        if (i === listLen) {
+                            i = 0;
+                        }
+                        listItems.eq(i).fadeIn(transition_speed);
+                    });
+
+                };
+
+            listItems.not(':first').hide();
+            setInterval(changeList, change_img_time);
+        });
+    </script>*@
+
+   
     @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -1,11 +1,7 @@
-using System;
+using ddfgroup.Data;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using ddfgroup.Areas.Identity.Pages.Account;
-using ddfgroup.Data;
 
 namespace ddfgroup.Areas.Admin.Pages.Dashboard
 {

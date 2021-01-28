@@ -241,6 +241,28 @@ namespace ddfgroup.Migrations
                     b.ToTable("Brands");
                 });
 
+            modelBuilder.Entity("ddfgroup.Data.CarImages", b =>
+                {
+                    b.Property<int>("Cid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarsId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FolderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagesName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Cid");
+
+                    b.ToTable("CarImages");
+                });
+
             modelBuilder.Entity("ddfgroup.Data.CarStatus", b =>
                 {
                     b.Property<int>("CarStatusId")
@@ -317,6 +339,10 @@ namespace ddfgroup.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Price")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PriceNaira")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

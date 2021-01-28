@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ddfgroup.Data
@@ -13,7 +10,7 @@ namespace ddfgroup.Data
         [Key]
         public int TransmissionId { get; set; }
 
-        [Display(Name ="Transmission")]
+        [Display(Name = "Transmission")]
         public string Name { get; set; }
 
         public IList<Cars> Cars { get; set; }

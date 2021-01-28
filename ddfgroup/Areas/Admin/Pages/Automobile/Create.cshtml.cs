@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using ddfgroup.Data;
-using Microsoft.EntityFrameworkCore;
-using System.Globalization;
-using System.ComponentModel.DataAnnotations;
+﻿using ddfgroup.Data;
+using ImageMagick;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
+using System.Linq;
 using System.Net.Http.Headers;
-using System.Drawing;
-using System.Drawing.Imaging;
-using ImageMagick;
+using System.Threading.Tasks;
 
 namespace ddfgroup.Areas.Admin.Pages.Automobile
 {
@@ -90,7 +88,8 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
         [BindProperty]
         public Cars Cars { get; set; }
 
-
+         [BindProperty]
+         public CarImages CarImages { get; set; }
 
 
 
@@ -102,8 +101,7 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
 
             if (!ModelState.IsValid)
             {
-                this.Content("One or More Fields is invalid");
-
+                ModelState.AddModelError("", "One or More Fields is invalid");
                 return Page();
             }
 
@@ -162,6 +160,20 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
             {
                 NewThumbString = CreateRandomString();
                 Directory.CreateDirectory(UploadDir + "/" + NewThumbString + "/" + "thumbs");
+                // save Car data to DB
+                Cars.ModelName = ModelName.Name;     // Map Cars ModelName Object to CarsModel Name Object
+                Cars.Year = ModelName.Year;
+                Cars.UploadedDate = DateTime.Now;
+                Cars.DisplayFileName = FileNameRenamed;
+                Cars.FolderName = NewString;
+                Cars.ThumbFolderName = NewThumbString;
+                Cars.ArrayFileName = "ArrFileName";
+
+                // _context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[CarImages] ON");
+                _context.Add(Cars);
+                await _context.SaveChangesAsync();
+                //retrieve last inserted record;
+
                 int counter = 0;
                 foreach (IFormFile ModelFile in MultipleFileUpload)    //Home file upload
                 {
@@ -170,36 +182,40 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
                     ThumbImageFolder = System.IO.Path.Combine(UploadDir, NewThumbString, "thumbs");
                     ArrFileName = GetUniqueFileName(ArrFileName);
                     string FullPath = Path.Combine(ThumbImageFolder, ArrFileName);     // create dynamic string for unique folder
-                                                                                                          //FileType = System.IO.Path.GetExtension(FileName);
+                                                                                       //FileType = System.IO.Path.GetExtension(FileName);
                     if (MultipleFileUpload.Count > 0)
                     {
-                        using (var stream = new FileStream(FullPath, FileMode.Create))
+
+                        using (var transaction = _context.Database.BeginTransaction())
                         {
-                            ModelFile.CopyTo(stream);
+                            using (var stream = new FileStream(FullPath, FileMode.Create))
+                            {
+                                ModelFile.CopyTo(stream);
+
+
+                                CarImages.ImagesName = ArrFileName;
+                                CarImages.FolderName = NewThumbString;
+                                CarImages.CarsId = GetLastCar().Id;
+                                CarImages.CreatedDate = DateTime.Now;
+                                CarImages.Cid = AutoId();
+                                _context.Add(CarImages);
+                                await _context.SaveChangesAsync();
+                                transaction.CommitAsync();
+                            }
                         }
+
                     }
                     counter++;
                 }
+                    
+                   // _context.Remove(GetLastCar());
+                   // await _context.SaveChangesAsync();
+                    Message = "Successful;";
+                    return RedirectToPage("./Index");
 
-                Cars.ModelName = ModelName.Name;     // Map Cars ModelName Object to CarsModel Name Object
-                Cars.Year = ModelName.Year;
-                Cars.UploadedDate = DateTime.Now;
-                Cars.DisplayFileName = FileNameRenamed;
-                Cars.FolderName = NewString;
-                Cars.ThumbFolderName = NewThumbString;
-                Cars.ArrayFileName = ArrFileName;
-
-                //Cars.ArrayFileName = ArrFileName.ToString(); //// check
-                _context.Cars.Add(Cars);
-                await _context.SaveChangesAsync();
-
-                //-------------------------------- resize image
-
-                Message = "Successful;";
-                return RedirectToPage("./Index");
             }
-
-            return this.Content("Failed");
+                return this.Content("Failed");
+        
         }
 
         private string GetUniqueFileName(string FName)
@@ -211,6 +227,11 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
                       + Path.GetExtension(FName);
         }
 
+        public Cars GetLastCar()
+        {
+            return  _context.Cars.OrderByDescending(op => op.UploadedDate).FirstOrDefault();
+           
+        }
         private string CreateRandomString()
         {
             return Guid.NewGuid().ToString().Substring(0, 16);
@@ -236,7 +257,19 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
             }
         }
 
+        private int AutoId()
+        {
+            // order descending and select the first Row which is the row with highest ID
+            var obj = _context.CarImages.OrderByDescending(e=>e.Cid).FirstOrDefault();
+            int Id;
+            if(obj== null)
+            {
+                Id = 1;
+                return Id;
+            }
+            return obj.Cid +1;
+        }
 
-       
+
     }
 }

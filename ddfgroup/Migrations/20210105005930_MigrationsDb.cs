@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace ddfgroup.Migrations
 {
@@ -267,7 +267,7 @@ namespace ddfgroup.Migrations
                     UploadedDate = table.Column<DateTime>(nullable: false),
                     BrandsId = table.Column<int>(nullable: false),
                     CarsModelId = table.Column<int>(nullable: false),
-                    CarModelName = table.Column<string>(nullable:false),
+                    CarModelName = table.Column<string>(nullable: false),
                     TransmissionId = table.Column<int>(nullable: false),
                     CarStatusId = table.Column<int>(nullable: false)
                 },

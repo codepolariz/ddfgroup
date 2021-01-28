@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ddfgroup.Data;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ddfgroup.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Globalization;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using System.IO;
-using System.Net.Http.Headers;
-using System.Drawing;
-using System.Drawing.Imaging;
-using ImageMagick;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ddfgroup.Areas.Admin.Pages.Automobile
 {
@@ -54,7 +47,7 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
             _context = context;
             _hostingEnvironment = hostingEnvironment;
         }
-  
+
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -99,10 +92,10 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
             {
                 return NotFound();
             }
-           ViewData["BrandsId"] = new SelectList(_context.Brands, "BrandsId", "Name");
-           ViewData["CarStatusId"] = new SelectList(_context.CarStatus, "CarStatusId", "StatusName");
-           ViewData["TransmissionId"] = new SelectList(_context.Transmissions, "TransmissionId", "Name");
-            
+            ViewData["BrandsId"] = new SelectList(_context.Brands, "BrandsId", "Name");
+            ViewData["CarStatusId"] = new SelectList(_context.CarStatus, "CarStatusId", "StatusName");
+            ViewData["TransmissionId"] = new SelectList(_context.Transmissions, "TransmissionId", "Name");
+
             return Page();
         }
 
@@ -115,7 +108,7 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
                 return Page();
             }
 
-            
+
 
             _context.Attach(Cars).State = EntityState.Modified;
             var ModelId = Cars.CarsModelId;
@@ -143,14 +136,10 @@ namespace ddfgroup.Areas.Admin.Pages.Automobile
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CarsExists(Cars.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                
+                    ModelState.AddModelError("", "Unable to save changes.Try again, and if the problem persists, see your system administrator.");
+                
+            
             }
 
             return RedirectToPage("./Index");

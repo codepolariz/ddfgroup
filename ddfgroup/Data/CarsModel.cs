@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ddfgroup.Data
 {
     public class CarsModel
-    {   
+    {
 
 
         [Key]
@@ -29,11 +25,11 @@ namespace ddfgroup.Data
 
 
         [Required]
-        [Display(Name ="Brand Name")]
+        [Display(Name = "Brand Name")]
         public int BrandsId { get; set; }
 
-        
- 
+
+
 
 
     }

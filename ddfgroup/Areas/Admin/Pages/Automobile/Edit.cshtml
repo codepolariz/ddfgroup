@@ -62,7 +62,11 @@
                         <span asp-validation-for="Cars.Price" class="text-danger"></span>
                     </div>
 
-
+                    <div class="form-group col-sm-6 col-md-4 col-xl-3 col-lg-3">
+                        <label asp-for="Cars.PriceNaira" class="control-label"></label>
+                        <input asp-for="Cars.PriceNaira" class="form-control" id="price_naira" />
+                        <span asp-validation-for="Cars.PriceNaira" class="text-danger"></span>
+                    </div>
 
                     <div class="form-group col-sm-3 col-md-4 col-xl-3 col-lg-3">
                         <label asp-for="Cars.Mileage" class="control-label"></label>
@@ -72,10 +76,10 @@
 
 
                     @*<div class="form-group col-sm-6 col-md-4 col-xl-2 col-lg-2">
-                            <label asp-for="Cars.Year" class="control-label"></label>
-                            <input asp-for="Cars.Year" class="form-control" />
-                            <span asp-validation-for="Cars.Year" class="text-danger"></span>
-                        </div>*@
+            <label asp-for="Cars.Year" class="control-label"></label>
+            <input asp-for="Cars.Year" class="form-control" />
+            <span asp-validation-for="Cars.Year" class="text-danger"></span>
+        </div>*@
 
 
 

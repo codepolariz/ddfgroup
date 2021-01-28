@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ddfgroup.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ddfgroup.Data;
+using System.Threading.Tasks;
 
 namespace ddfgroup.Areas.Admin.Pages.AutoModels
 {
@@ -13,7 +10,7 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
     {
         private readonly ddfgroup.Data.ApplicationDbContext _context;
 
-        
+
 
         public CreateModel(ddfgroup.Data.ApplicationDbContext context)
         {
@@ -22,8 +19,8 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
 
         public IActionResult OnGet()
         {
-          ViewData["BrandsId"] = new SelectList(_context.Brands, "BrandsId", "Name");
-          
+            ViewData["BrandsId"] = new SelectList(_context.Brands, "BrandsId", "Name");
+
             return Page();
         }
 

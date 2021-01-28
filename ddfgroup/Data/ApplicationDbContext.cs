@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ddfgroup.Data
 {
@@ -24,14 +21,16 @@ namespace ddfgroup.Data
 
         public DbSet<PageContents> PageInfo { get; set; }
         public DbSet<ApplicationUser> User { get; set; }
-        public DbSet<Feedback>  Feedback { get; set; }
-        public DbSet<Brands>  Brands { get; set; }
+        public DbSet<Feedback> Feedback { get; set; }
+        public DbSet<Brands> Brands { get; set; }
 
         public DbSet<CarsModel> CarsModel { get; set; }
         public DbSet<Transmission> Transmissions { get; set; }
         public DbSet<Cars> Cars { get; set; }
         public DbSet<CarStatus> CarStatus { get; set; }
         public DbSet<Currency> Currencies { get; set; }
+
+        public DbSet<CarImages> CarImages { get; set; }
 
 
     }

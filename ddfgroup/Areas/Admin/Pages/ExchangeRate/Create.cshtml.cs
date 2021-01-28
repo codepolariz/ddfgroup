@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ddfgroup.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ddfgroup.Data;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ddfgroup.Areas.Admin.Pages.ExchangeRate
 {
     public class CreateModel : PageModel
     {
         private readonly ddfgroup.Data.ApplicationDbContext _context;
-        
+
 
         public CreateModel(ddfgroup.Data.ApplicationDbContext context)
         {
@@ -26,7 +24,7 @@ namespace ddfgroup.Areas.Admin.Pages.ExchangeRate
             SelectList select = new SelectList(list, "Key", "Value");
             ViewData["Country"] = select;
             var dicrate = dic.ExchangeCountries().ToList();
-            SelectList sel = new SelectList(dicrate, "Key","Value");
+            SelectList sel = new SelectList(dicrate, "Key", "Value");
             ViewData["Rate"] = sel;
             return Page();
         }
@@ -42,7 +40,7 @@ namespace ddfgroup.Areas.Admin.Pages.ExchangeRate
             {
                 return Page();
             }
-            
+
             _context.Currencies.Add(Currency);
             await _context.SaveChangesAsync();
 

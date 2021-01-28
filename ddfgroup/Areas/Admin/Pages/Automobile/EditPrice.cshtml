@@ -1,0 +1,72 @@
+﻿@page
+@model ddfgroup.Areas.Admin.Pages.Automobile.EditPriceModel
+@{
+    ViewData["Title"] = "Edit Price";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+<div class="main ">
+    <partial name="_AdminPartialTopNav" />
+
+    <div class="main-body">
+
+        <div class="padding-left"><h3>@ViewData["Title"]</h3></div>
+
+        <div class="row">
+
+            <div class="col-12 col-xl-12 ">
+
+                <div class="heads-padding text-right">
+                    <a asp-page="Index" asp-route-id="" class="btn btn-success btn-sm"> Manage Cars</a>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-12">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                        <div class="form-group col-md-6 col-xl-4 col-lg-4">
+
+                            <label asp-for="Cars.Brands.Name" class="control-label"></label>
+                            <input asp-for="Cars.Brands.Name" class="form-control" readonly />
+                        </div>
+
+                        <div class="form-group col-md-6 col-xl-4 col-lg-4">
+
+                            <label asp-for="Cars.Name" class="control-label"></label>
+                            <input asp-for="Cars.Name" class="form-control" readonly />
+                        </div>
+
+                        <div class="form-group col-md-6 col-xl-4 col-lg-4">
+
+                            <label asp-for="Cars.ModelName" class="control-label"></label>
+                            <input asp-for="Cars.ModelName" class="form-control" readonly />
+                        </div>
+
+                        <div class="form-group col-md-6 col-xl-4 col-lg-4">
+
+                            <label asp-for="Cars.PriceNaira" class="control-label"></label>
+                            <input asp-for="Cars.PriceNaira" class="form-control" id="price_naira" />
+                        </div>
+
+                        <div class="form-group col-md-6 col-xl-4 col-lg-4">
+                            <label asp-for="Cars.Price" class="control-label"></label>
+                            <input asp-for="Cars.Price" class="form-control" />
+                        </div>
+                        <input type="hidden" asp-for="Cars.Id" class="form-control" />
+                        <div class=" form-group col-sm-12 col-md-12 col-xl-12 col-lg-12">
+                            <input type="submit" value="Update Price" class="btn btn-primary btn-lg" />
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

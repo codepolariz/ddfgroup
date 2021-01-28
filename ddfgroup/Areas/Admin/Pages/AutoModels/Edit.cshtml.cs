@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ddfgroup.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ddfgroup.Data;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ddfgroup.Areas.Admin.Pages.AutoModels
 {
@@ -36,7 +34,7 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
             {
                 return NotFound();
             }
-           ViewData["BrandsId"] = new SelectList(_context.Brands, "BrandsId", "Name");
+            ViewData["BrandsId"] = new SelectList(_context.Brands, "BrandsId", "Name");
             return Page();
         }
 
@@ -59,8 +57,9 @@ namespace ddfgroup.Areas.Admin.Pages.AutoModels
             {
                 if (!CarsModelExists(CarsModel.CarsModelId))
                 {
-                    return NotFound();
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
                 }
+            
                 else
                 {
                     throw;

@@ -1,17 +1,10 @@
 using ddfgroup.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ddfgroup
 {
@@ -32,20 +25,21 @@ namespace ddfgroup
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-           // services.AddRazorPages( options=>
-                // options.Conventions.AuthorizeAreaPage("Admin",   "/Contents")
-
-                 services.AddMvc()
-                  .AddRazorPagesOptions(options =>
-                  {
-                      options.Conventions.AuthorizeFolder("/Account/Manage");
-                      options.Conventions.AuthorizeFolder("/Admin/Contents");
-                      options.Conventions.AuthorizePage("/Account/Logout");
-                      options.Conventions.AllowAnonymousToPage("/Account/Login");
-                  });
-            services.AddAntiforgery(options => options.HeaderName = "XSRF TOKEN");
-           // );
           
+            // services.AddRazorPages( options=>
+            // options.Conventions.AuthorizeAreaPage("Admin",   "/Contents")
+
+            services.AddMvc()
+             .AddRazorPagesOptions(options =>
+             {
+                 options.Conventions.AuthorizeFolder("/Account/Manage");
+                 options.Conventions.AuthorizeFolder("/Admin/Contents");
+                 options.Conventions.AuthorizePage("/Account/Logout");
+                 options.Conventions.AllowAnonymousToPage("/Account/Login");
+             });
+            services.AddAntiforgery(options => options.HeaderName = "XSRF TOKEN");
+            // );
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
